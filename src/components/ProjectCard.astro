@@ -1,0 +1,149 @@
+---
+// src/components/ProjectCard.astro
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  repoUrl: string;
+  imagePath?: string;
+}
+
+const { title, description, tags, repoUrl, imagePath } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="card-inner-wrapper">
+
+    <div class="card-image">
+      {imagePath ? (
+        <img src={imagePath} alt={`Captura de ${title}`} loading="lazy" />
+      ) : (
+        <span class="tech-font placeholder-text">Imagen</span>
+      )}
+    </div>
+
+    <div class="card-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      
+      <div class="tags-container">
+        {tags.map((tag) => (
+          <span class="tag tech-font">{tag}</span>
+        ))}
+      </div>
+
+      <a href={repoUrl} target="_blank" class="repo-link">Ver Repositorio -></a>
+    </div>
+
+  </div>
+</article>
+
+<style>
+  .project-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    margin-bottom: 2rem;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  /* 2. LAYOUT: Mobile First (Apilado verticalmente por defecto) */
+  .card-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilos de imagen para mobile */
+  .card-image {
+    width: 100%;
+    height: 180px; /* Altura fija en mobile */
+    background-color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  @media (min-width: 768px) {
+    /* 3. CAMBIO A HORIZONTAL (En tablets y desktop) */
+    .card-inner-wrapper {
+      flex-direction: row; /* Imagen izquierda, texto derecha */
+    }
+
+    .card-image {
+      /* REDUCIMOS EL TAMAÑO AQUÍ */
+      width: 250px; /* Ancho fijo para la imagen en desktop */
+      height: 100%; /* Que ocupe el alto que determine el texto */
+      min-height: 220px; /* Asegura un mínimo de altura */
+      border-bottom: none;
+      border-right: 1px solid var(--border-color); /* Borde lateral */
+      flex-shrink: 0; /* Evita que la imagen se encoja */
+    }
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción sin deformar */
+  }
+
+  .placeholder-text {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el texto verticalmente en desktop */
+    width: 100%;
+  }
+
+  .card-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.15rem;
+  }
+
+  .card-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    background-color: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+
+  .repo-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    margin-top: auto; /* Empuja el link al fondo en desktop */
+  }
+
+  .repo-link:hover {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,105 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="layout-grid">
+      
+      <aside class="sidebar">
+        <slot name="sidebar" />
+      </aside>
+
+      <main class="main-content">
+        <slot />
+      </main>
+
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Paleta de Colores Dark Minimalista */
+    --bg-main: #0F172A;        /* Fondo Principal */
+    --bg-surface: #1E293B;     /* Superficies / Sidebar */
+    --border-color: #334155;   /* Líneas divisorias */
+    --text-primary: #F8FAFC;   /* Títulos y texto destacado */
+    --text-secondary: #94A3B8; /* Párrafos y descripciones */
+    --accent: #38BDF8;         /* Color de Acento (Cian tecnológico) */
+
+    /* Tipografías */
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+  }
+
+  /* Reseteo básico para evitar márgenes por defecto del navegador */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* 1. ESTRUCTURA CSS GRID */
+  .layout-grid {
+    display: grid;
+    /* En dispositivos móviles, apilamos todo en 1 sola columna */
+    grid-template-columns: 1fr; 
+    min-height: 100vh;
+  }
+
+  @media (min-width: 768px) {
+    .layout-grid {
+      /* En pantallas grandes: Sidebar fijo de 300px, el resto (1fr) para el contenido */
+      grid-template-columns: 300px 1fr;
+    }
+  }
+
+  /* 2. COMPORTAMIENTO DEL SIDEBAR */
+  .sidebar {
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh; /* Ocupa todo el alto de la pantalla */
+      overflow-y: auto; /* Permite scroll interno si agregas muchos links */
+    }
+  }
+
+  /* 3. COMPORTAMIENTO DEL CONTENIDO PRINCIPAL */
+  .main-content {
+    padding: 3rem 2rem;
+    max-width: 900px; /* Limita el ancho para que la lectura sea cómoda */
+    margin: 0 auto; /* Centra el contenido en su columna */
+    width: 100%;
+  }
+
+  /* Utilidad global para la fuente técnica */
+  .tech-font {
+    font-family: var(--font-mono);
+    color: var(--accent);
+  }
+</style>

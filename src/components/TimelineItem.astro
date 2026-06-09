@@ -1,0 +1,62 @@
+---
+// src/components/TimelineItem.astro
+interface Props {
+  date: string;
+  content: string;
+  link?: string;
+  linkText?: string;
+}
+const { date, content, link, linkText } = Astro.props;
+---
+
+<div class="timeline-item">
+  <div class="node"></div>
+  <div class="item-content">
+    <span class="date tech-font">{date}</span>
+    <p>{content}</p>
+    {link && <a href={link} target="_blank" class="tech-font">{linkText || 'Ver más'} _</a>}
+  </div>
+</div>
+
+<style>
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: 2.5rem;
+    border-left: 1px solid var(--border-color);
+  }
+
+  .node {
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    width: 9px;
+    height: 9px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .date {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .item-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .item-content a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  .item-content a:hover {
+    text-decoration: underline;
+  }
+</style>

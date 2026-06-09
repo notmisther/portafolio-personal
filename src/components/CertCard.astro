@@ -1,0 +1,75 @@
+---
+// src/components/CertCard.astro
+interface Props {
+  title: string;
+  issuer: string;
+  date: string;
+  imagePath?: string; // Ahora pediremos la ruta local, ej: "/certificados/diploma.png"
+}
+
+const { title, issuer, date, imagePath } = Astro.props;
+---
+
+<article class="cert-image-card">
+  <div class="cert-image">
+    {imagePath ? (
+      <img src={imagePath} alt={`Certificado de ${title}`} loading="lazy" />
+    ) : (
+      <span class="tech-font placeholder-text">Img_Certificado</span>
+    )}
+  </div>
+  
+  <div class="cert-content">
+    <h3>{title}</h3>
+    <p class="issuer">{issuer}</p>
+    <p class="date tech-font">{date}</p>
+  </div>
+</article>
+
+<style>
+  /* Los estilos CSS se mantienen exactamente iguales */
+  .cert-image-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .cert-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .cert-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .placeholder-text {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  .cert-content {
+    padding: 1.25rem;
+  }
+  .cert-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .issuer {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  .date {
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+    color: var(--accent);
+    opacity: 0.8;
+  }
+</style>

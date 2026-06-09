@@ -1,0 +1,46 @@
+---
+// src/pages/proyectos.astro
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+
+<Layout title="Todos mis Proyectos | Sebas">
+  
+  <div slot="sidebar">
+    <Sidebar />
+  </div>
+
+  <section class="page-header">
+    <a href="/" class="back-link tech-font"><- Volver al inicio</a>
+    <h1 class="page-title">Todos mis Proyectos</h1>
+    <p class="page-description">Explora el repositorio completo de mis avances tecnol¨®gicos y arquitecturas.</p>
+  </section>
+
+  <section class="all-projects-list">
+    <ProjectCard 
+        title="Asistente de Voz y Texto 'Cronos'"
+        description="Asistente de voz conectado a la API de Google"
+        tags={['Google', 'Cloud Computing', 'IA']}
+        repoUrl="https://github.com/notmisther/proximamente-cronos"
+		imagePath="/proyectos/cronos.png"
+      />
+      <ProjectCard 
+        title="Pagina para Repositorios"
+        description="Desarrollo de una pagina en GitHub con Vercel para guardar proyectos, eventos, certificados de una manera visual"
+        tags={['GitHub', 'Astro', 'Vercel', 'CSS']}
+        repoUrl="https://github.com/notmisther/portafolio-personal"
+		imagePath="/proyectos/pagrepo.png"
+      />
+      </section>
+
+</Layout>
+
+<style>
+  .page-header { margin-bottom: 3rem; }
+  .back-link { display: inline-block; color: var(--text-secondary); text-decoration: none; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .back-link:hover { color: var(--accent); }
+  .page-title { font-size: 2.5rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .page-description { color: var(--text-secondary); }
+  .all-projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
+</style>

@@ -1,0 +1,67 @@
+---
+// src/pages/certificados.astro
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import CertCard from '../components/CertCard.astro';
+---
+
+<Layout title="Mis Certificados | Sebas">
+  
+  <div slot="sidebar">
+    <Sidebar />
+  </div>
+
+  <section class="page-header">
+    <a href="/" class="back-link tech-font"><- Volver al inicio</a>
+    <h1 class="page-title">Todos mis Certificados</h1>
+    <p class="page-description">Registro de cursos, talleres y validaciones técnicas.</p>
+  </section>
+
+  <section class="all-certs-grid">
+    <CertCard title="Certificado de Participación PeruHub" issuer="PerúHub" date="Mayo 2026" imagePath="/certificados/peruhub.png" />
+    <CertCard title="Microsoft Applied Skills: Generate reports with AI research agents" issuer="Microsoft" date="Mayo 2026" imagePath="/certificados/microsoftappliedskillsagents.png"/>
+    <CertCard title="Curso de fundamentos de arquitectura de software" issuer="Código Facilito" date="Mayo 2026" imagePath="/certificados/cdarqui.png"/>
+    <CertCard title="Curso de introducción a Machine Learning" issuer="Código Facilito" date="Mayo 2026" imagePath="/certificados/cfmachinelearning.png"/>
+    <CertCard title="Curso de fundamentos de Azure" issuer="Código Facilito" date="Mayo 2026" imagePath="/certificados/cfazure.png"/>
+	<CertCard title="Curso de Bases y conceptos de la Ciencia de Datos" issuer="Código Facilito" date="Mayo 2026" imagePath="/certificados/cfcienciadedatos.png"/>
+	<CertCard title="Curso de Microsoft Copilot Chat" issuer="Código Facilito" date="Mayo 2026" imagePath="/certificados/cfcopilotchat.png"/>
+	<CertCard title="Full day Data Lab" issuer="Google/Interseguro Compañia de Seguros" date="Abril 2026" imagePath="/certificados/datalab.png"/>
+
+    </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    color: var(--text-secondary);
+  }
+
+  .all-certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

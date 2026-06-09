@@ -1,0 +1,131 @@
+---
+// src/components/Sidebar.astro
+---
+
+<div class="sidebar-content">
+  <div class="avatar">
+    <img src="/avatar.png" alt="Foto de Sebastian Gomez" class="profile-img" />
+  </div>
+
+  <div class="profile-info">
+    <h1 class="name">Sebastian Gomez</h1>
+    <p class="tech-font role">> Practicante_de_Data</p>
+    <p class="location">📍 Lima, Perú</p>
+	<p class="tech-font role">> Contacto</p>
+	<p class="location">sebastiangomeztorres2121@gmail.com 960671994</p>
+  </div>
+
+  <nav class="navigation">
+    <ul>
+      <li><a href="/" class="nav-link active">Inicio</a></li>
+      <li><a href="/proyectos" class="nav-link">Proyectos Destacados</a></li>
+	  <li><a href="/#eventos" class="nav-link">Eventos</a></li>
+      <li><a href="/certificados" class="nav-link">Certificaciones</a></li>
+    </ul>
+  </nav>
+
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/sebastian-gomez-torres-7a1110274/" class="btn-primary" target="_blank">LinkedIn</a>
+    <a href="https://github.com/notmisther" class="btn-secondary" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<style>
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border: 2px solid var(--accent);
+  }
+  
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .location {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .navigation ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .social-links {
+    margin-top: auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    text-align: center;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--bg-main);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.8;
+  }
+</style>

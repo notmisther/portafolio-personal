@@ -1,17 +1,157 @@
 ---
-
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import EventCard from '../components/EventCard.astro';
+import CertCard from '../components/CertCard.astro';
+import TimelineItem from '../components/TimelineItem.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Sebas | Portafolio Tecnológico">
+  
+  <div slot="sidebar">
+    <Sidebar />
+  </div>
+
+  <section id="sobre-mi">
+    <h2 class="section-title">👋 Sobre Mí</h2>
+    <p class="description">
+      Estudiante de la USIL enfocado en el análisis de datos, visualización y el diseño de arquitecturas en la nube. Mi objetivo es traducir necesidades complejas en arquitecturas limpias y métricas accionables.
+    </p>
+    <p class="description" style="margin-top: 1rem;">
+      Busco desarrollarme como Practicante de Data, aplicando mis conocimientos en entornos como AWS, GCP, herramientas como Power BI, SQL, BigQuery, y frameworks de desarrollo moderno.
+    </p>
+  </section>
+
+  <section id="proyectos" class="spacer">
+    <h2 class="section-title">🚀 Proyectos</h2>
+    <div class="projects-grid">
+      <ProjectCard 
+        title="Asistente de Voz y Texto 'Cronos'"
+        description="Asistente de voz conectado a la API de Google"
+        tags={['Google', 'Cloud Computing', 'IA']}
+        repoUrl="https://github.com/notmisther/proximamente-cronos"
+		imagePath="/proyectos/cronos.png" />
+
+      <ProjectCard 
+        title="Pagina para Repositorios"
+        description="Desarrollo de una pagina en GitHub con Vercel para guardar proyectos, eventos, certificados de una manera visual"
+        tags={['GitHub', 'Vercel', 'CSS']}
+        repoUrl="https://github.com/notmisther/portafolio-personal"
+		imagePath="/proyectos/pagrepo.png" />
+
+    </div>
+	
+	<div class="projects-grid">
+      </div>
+
+    <div class="btn-container">
+      <a href="/proyectos" class="btn-outline">Ver todos los proyectos -></a>
+    </div>
+  </section>
+
+  <section id="eventos" class="spacer">
+    <h2 class="section-title">📍 Proximos Eventos a los que asistiré</h2>
+    <div class="event-grid">
+	  <EventCard 
+        title="Microsoft Build // localhost:lima"
+        organizer="Microsoft"
+        date="20 de Junio 2026"
+        eventUrl="#"
+      />
+      <EventCard 
+        title="Kubernetes Community Days Lima 2026"
+        organizer="Cloud Native Computing Foundation (CNCF)"
+        date="18 de Julio 2026"
+        eventUrl="https://kcd.cncf.io/"
+      />
+    </div>
+  </section>
+
+  <section id="certificados" class="spacer">
+    <h2 class="section-title">🎓 Ultimos Certificados</h2>
+    <div class="cert-grid-img">
+      <CertCard 
+        title="Certificado de Participación PeruHub"
+        issuer="PerúHub"
+        date="Mayo 2026"
+		imagePath="/certificados/peruhub.png"
+      />
+      <CertCard 
+        title="Microsoft Applied Skills: Generate reports with AI research agents"
+        issuer="Microsoft"
+        date="Mayo 2026"
+		imagePath="/certificados/microsoftappliedskillsagents.png"
+      />
+    </div>
+    
+    <div class="btn-container">
+      <a href="/certificados" class="btn-outline">Ver todos los certificados -></a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    max-width: 750px;
+    line-height: 1.7;
+  }
+
+  .spacer {
+    margin-top: 5rem;
+  }
+  
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cert-grid-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+    background-color: rgba(56, 189, 248, 0.1);
+  }
+
+  .timeline {
+    margin-top: 2rem;
+  }
+</style>
